@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row m-3">
+            <div class="col-md-12 jumbotron text-center">
+                <h1><strong>Mission to Mars</strong></h1>
+                <a class="btn btn-primary btn-lg" type="submit" href="/scrape">Scrape New Data</a>
+            </div>
+            <div class="col-md-12">
+                <h2><strong>Latest Mars News</strong></h2>
+                <h6><strong>{{result.news_title}}</strong></h6>
+                <p>{{result.news_p}}</p>
+            </div>
+            <div class="col-md-8">
+                <h2><strong>Featured Mars Image</strong></h2>
+                <img class="img-fluid" src="{{result.featured_image_url}}" alt="Featured Image">
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-center"><strong>Current Weather on Mars</strong></h6>
+                        <p class="text-center">{{result.mars_weather}}</p>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <h6 class="text-center"><strong>Mars Facts</strong></h6>
+                    <p>{{result.mars_facts|safe}}</P>
+                </div>
+            </div>
+            <div class="col-md-12 p-3">
+                <h2 class="text-center"><strong>Mars Hemispheres</strong></h2>
+            </div>
+            {% for sphere in result.hemisphere_image_urls %}
+            <div class="col-md-6 p-2">
+                <div class="card p-2">
+                    <img class="card-img-top img-fluid" src="{{sphere.img_url}}" alt="{{sphere.title}}">
+                    <div class="card-body">
+                        <h4 class="card-title text-center"><strong>{{sphere.title}}</strong></h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
